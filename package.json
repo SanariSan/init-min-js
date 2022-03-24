@@ -1,0 +1,48 @@
+{
+  "name": "init-min-js",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "---tips": "---------------------------------------------------------------",
+    "------start": "accepts -linux/-win",
+    "------mon": "accepts -linux/-win",
+    "------prelaunch-skip": "swap between true/false to turn skip on/off",
+    "---general control": "---------------------------------------------------------------",
+    "start": "yarn start-linux",
+    "mon": "yarn mon-linux",
+    "prelaunch-skip": "true",
+    "prelaunch": "yarn prelaunch-skip || (yarn format)",
+    "---start os": "---------------------------------------------------------------",
+    "start-linux": "yarn cli-wipe-linux && yarn prelaunch && yarn launch-prod",
+    "start-win": "yarn cli-wipe-win && yarn prelaunch && yarn launch-prod",
+    "mon-linux": "yarn cli-wipe-linux && yarn prelaunch && yarn mon-prod",
+    "mon-win": "yarn cli-wipe-win && yarn prelaunch && yarn mon-prod",
+    "---launch general": "---------------------------------------------------------------",
+    "launch-prod": "./node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node -r dotenv/config ./src/app.js",
+    "launch-dev": "./node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node -r dotenv/config ./src/app.js",
+    "mon-prod": "./node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production nodemon -r dotenv/config ./src/app.js",
+    "mon-dev": "./node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development nodemon -r dotenv/config ./src/app.js",
+    "---cli os": "---------------------------------------------------------------",
+    "cli-wipe-linux": "printf '\\033c\\033[3J'",
+    "cli-wipe-scroll-linux": "printf '\\033[H\\033[2J'",
+    "cli-wipe-win": "echo 'todo: test wipe cli when on windows'",
+    "---additional": "---------------------------------------------------------------",
+    "format": "./node_modules/prettier/bin-prettier.js -w --config ./.prettierrc ./src/",
+    "exe-win": "./node_modules/pkg/lib-es5/bin.js -t node16-win ./src/app.js",
+    "exe-lin": "./node_modules/pkg/lib-es5/bin.js -t node16-linux ./src/app.js",
+    "madge-json": "node ./node_modules/madge/bin/cli.js -c -j ./src/",
+    "madge-pic": "node ./node_modules/madge/bin/cli.js -c -j -i ./dep.svg ./src/"
+  },
+  "dependencies": {
+    "dotenv": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "madge": "^5.0.1",
+    "nodemon": "^2.0.15",
+    "pkg": "^5.5.2",
+    "prettier": "^2.4.1"
+  }
+}

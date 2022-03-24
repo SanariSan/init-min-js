@@ -1,0 +1,11 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "\n// format headers from raw state\n// a: b => 'a': 'b',\n\nconst str = ``;\n\nconst formatted = str.split(/: |\\n/gmi);\nlet output = ``;\nfor (let i = 0; i < formatted.length; i++) {\n    output += `\\'${formatted[i]}\\'${i%2 === 0 ? ': ' : ',\\n'}`;\n}\nconsole.log(output);"
+            ],
+            "outputs": []
+        }
+    ]
+}
